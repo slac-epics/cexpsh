@@ -1,0 +1,7 @@
+ifeq ($(OS_CLASS),Linux)
+CEXP_LIBS=cexp pmbfd pmelf tecla_r spencer_regexp
+CPPFLAGS+=-DHAVE_CEXP
+# Must link statically or build a symbol table somehow....
+STATIC_BUILD=YES
+BUILD_CEXP=YES
+endif

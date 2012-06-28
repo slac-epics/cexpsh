@@ -1,0 +1,56 @@
+TOP=..
+
+include $(TOP)/configure/CONFIG
+
+#----------------------------------------
+#  ADD MACRO DEFINITIONS AFTER THIS LINE
+#=============================
+CEXP_SRCDIR=../cexp-snapshot-src
+
+LIBNAM=$(LIB_PREFIX)cexp$(LIB_SUFFIX)
+LIBTGT=lib/$(LIBNAM)
+
+LIB_INSTALLS_YES+=$(LIBTGT)
+LIB_INSTALLS_YES+=$(addprefix lib/$(LIB_PREFIX),$(addsuffix $(LIB_SUFFIX),$(CEXP_LIBS)))
+
+LIB_INSTALLS=$(LIB_INSTALLS_$(BUILD_CEXP))
+
+INC_YES=cexp.h
+INC=$(INC_$(BUILD_CEXP))
+
+TARGETS_IOC_YES=build/Makefile $(LIBTGT)
+TARGETS_IOC=$(TARGETS_IOC_$(BUILD_CEXP))
+
+CEXP_CONFIG_ARGS_CROSS=--host=$(GNU_TARGET)
+
+CEXP_CONFIG_ARGS= $(CEXP_CONFIG_ARGS_$(BUILD_CLASS)) CC=$(CC)
+CEXP_CONFIG_ARGS+= --prefix=`pwd`/../
+# We don't want to mess with curses/terminfo etc.
+CEXP_CONFIG_ARGS+= --enable-ansiterm
+CEXP_CONFIG_ARGS+=$(CONFIG_ARG_$(OS_CLASS))
+
+#==================================================
+# Build an IOC support library
+
+include $(TOP)/configure/RULES
+#----------------------------------------
+#  ADD RULES AFTER THIS LINE
+#
+$(CEXP_SRCDIR)/cexp.h:
+	$(error "CEXP sources not found; install 'cexp' sources in '$(subst ../,,$(CEXP_SRCDIR))' dir")
+
+build/Makefile: $(CEXP_SRCDIR)/cexp.h
+	if ! [ -d build ] ; then mkdir build ; fi
+	cd build ; export PATH=$(GNU_DIR)/bin:$$PATH; ../$(CEXP_SRCDIR)/configure $(CEXP_CONFIG_ARGS)
+
+$(LIBTGT): build/Makefile
+	export PATH=$(GNU_DIR)/bin:$$PATH; $(MAKE) -C build install
+
+../O.Common/cexp.h: $(CEXP_SRCDIR)/cexp.h
+	ln -s $^ $@
+
+fall:
+	echo $(OS_CLASS)
+	echo $(BUILD_CEXP)
+	echo $(LIBTGT)
+	echo $(INC)
