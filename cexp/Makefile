@@ -27,6 +27,8 @@ CEXP_CONFIG_ARGS= $(CEXP_CONFIG_ARGS_$(BUILD_CLASS)) CC=$(CC)
 CEXP_CONFIG_ARGS+= --prefix=`pwd`/../
 # We don't want to mess with curses/terminfo etc.
 CEXP_CONFIG_ARGS+= --enable-ansiterm
+# let cexp fall into interactive mode after processing a script
+CEXP_CONFIG_ARGS+= --enable-interactive-default
 CEXP_CONFIG_ARGS+=$(CONFIG_ARG_$(OS_CLASS))
 
 #==================================================
