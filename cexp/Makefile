@@ -5,7 +5,8 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
-CEXP_SRCDIR=../cexp-snapshot-src
+CEXP_VERS=cexp-snapshot-src
+CEXP_SRCDIR=../$(CEXP_VERS)
 
 LIBNAM=$(LIB_PREFIX)cexp$(LIB_SUFFIX)
 LIBTGT=lib/$(LIBNAM)

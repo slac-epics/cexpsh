@@ -1,0 +1,81 @@
+This module allows an application to use cexpsh() instead
+of iocsh from 'main'. Currently relevant and supported on
+Linux only.
+
+To use this module:
+
+   - add and entry in your application's RELEASE file pointing
+     to this module.
+
+   - your application's 'main' may look like this:
+
+       #include <iocsh.h>
+       #include <epicsThread.h>
+       #include <epicsExit.h>
+
+       #ifdef HAVE_CEXP
+       #include <cexp.h>
+       #endif
+
+       int
+       main(int argc, char **argv)
+       {
+       #ifdef HAVE_CEXP
+         cexp_main(argc, argv);
+       #else
+         if ( argc >= 2 ) {
+           iocsh(argv[1]);
+           epicsThreadSleep(0.2);
+         }
+         iocsh(NULL);
+       #endif
+         epicsExit();
+         return 0;
+       }
+
+     Some makefile magic provided by this module automatically
+     defines HAVE_CEXP on platforms where cexpsh is available.
+
+   - Your application's Makefile must link the cexp (and dependent)
+     libraries. Again, the makefile magic defines CEXP_LIBS only
+     when applicable:
+
+         <myApp>_LIBS += $(CEXP_LIBS)
+
+NOTES:
+   1 when adding this module on a platform where it can be used
+     a STATIC_BUILD is enforced. Cexpsh() cannot look up symbols
+     in dynamic libraries unless a special symbol table is built.
+     This is not implemented in the makefile logic ATM.
+
+   2 No special symbol table is built - hence only symbols defined
+     by the main application (not shared libs see 1) are 'known'
+     to the shell.
+     Your application's Makefile may enforce linking symbols which
+     are not referenced by your app by adding
+
+         -Wl,-u,<symbol>
+
+     to the linker flags.
+
+BUILDING THIS MODULE
+====================
+
+In order to build this module you must install the CEXP
+sources in a subdirectory of $(TOP)/cexp/<subdir> and define
+
+CEXP_VERS=<subdir>
+
+in $(TOP)/cexp/Makefile accordingly. If you are working
+with a CVS checkout then the CEXP package must be prepared:
+
+  chdir $(TOP)/cexp/<subdir>
+  make prep
+
+This requires 'bison' and recent autotools.
+
+A released tarball of CEXP does not need this preparation 
+step.
+
+After installing the sources, chdir to $(TOP) and issue
+'make' as usual.
