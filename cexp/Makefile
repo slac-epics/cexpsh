@@ -16,7 +16,9 @@ LIB_INSTALLS_YES+=$(addprefix lib/$(LIB_PREFIX),$(addsuffix $(LIB_SUFFIX),$(CEXP
 
 LIB_INSTALLS=$(LIB_INSTALLS_$(BUILD_CEXP))
 
-INC_YES=cexp.h
+INC_YES+=cexp.h
+INC_YES+=cexpsyms.h
+INC_YES+=ctyps.h
 INC=$(INC_$(BUILD_CEXP))
 
 TARGETS_IOC_YES=build/Makefile $(LIBTGT)
@@ -49,7 +51,7 @@ build/Makefile: $(CEXP_SRCDIR)/cexp.h
 $(LIBTGT): build/Makefile
 	export PATH=$(GNU_DIR)/bin:$$PATH; $(MAKE) -C build install
 
-../O.Common/cexp.h: $(CEXP_SRCDIR)/cexp.h
+../O.Common/%.h: $(CEXP_SRCDIR)/%.h
 	ln -s $^ $@
 
 fall:
