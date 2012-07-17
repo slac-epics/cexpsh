@@ -23,3 +23,7 @@
 # If you don't want to install into $(TOP) then
 # define INSTALL_LOCATION here
 #INSTALL_LOCATION=<fullpathname>
+
+# set this to the subdirectory (under cexp) where the
+# sources of cexp reside.
+CEXP_VERS=cexp-snapshot-src
