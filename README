@@ -43,13 +43,8 @@ To use this module:
          <myApp>_LIBS += $(CEXP_LIBS)
 
 NOTES:
-   1 when adding this module on a platform where it can be used
-     a STATIC_BUILD is enforced. Cexpsh() cannot look up symbols
-     in dynamic libraries unless a special symbol table is built.
-     This is not implemented in the makefile logic ATM.
-
-   2 No special symbol table is built - hence only symbols defined
-     by the main application (not shared libs see 1) are 'known'
+   1 No special symbol table is built - hence only symbols defined
+     by the main application (and shared libraries) are 'known'
      to the shell.
      Your application's Makefile may enforce linking symbols which
      are not referenced by your app by adding
@@ -57,6 +52,10 @@ NOTES:
          -Wl,-u,<symbol>
 
      to the linker flags.
+
+   2 cexp now supports reading symbols from shared libraries. All
+     global symbols exported by any shared libs used by the application
+     are available.
 
 BUILDING THIS MODULE
 ====================
@@ -76,6 +75,12 @@ This requires 'bison' and recent autotools.
 
 A released tarball of CEXP does not need this preparation 
 step.
+
+If you want disassembler support then you have to install
+binutils sources (vers. 2.21 works) and create a symlink
+from the cexp top source directory to the binutils sources.
+
+ln -s <binutils-2.21-top>  cexp/$(CEXP_VERS)/binutils
 
 After installing the sources, chdir to $(TOP) and issue
 'make' as usual.
