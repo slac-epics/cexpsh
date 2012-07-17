@@ -5,7 +5,6 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
-CEXP_VERS=cexp-snapshot-src
 CEXP_SRCDIR=../$(CEXP_VERS)
 
 LIBNAM=$(LIB_PREFIX)cexp$(LIB_SUFFIX)
@@ -32,6 +31,7 @@ CEXP_CONFIG_ARGS+= --prefix=`pwd`/../
 CEXP_CONFIG_ARGS+= --enable-ansiterm
 # let cexp fall into interactive mode after processing a script
 CEXP_CONFIG_ARGS+= --enable-interactive-default
+CEXP_CONFIG_ARGS+= --disable-loader
 CEXP_CONFIG_ARGS+=$(CONFIG_ARG_$(OS_CLASS))
 
 #==================================================
@@ -48,7 +48,11 @@ build/Makefile: $(CEXP_SRCDIR)/cexp.h
 	if ! [ -d build ] ; then mkdir build ; fi
 	cd build ; export PATH=$(GNU_DIR)/bin:$$PATH; ../$(CEXP_SRCDIR)/configure $(CEXP_CONFIG_ARGS)
 
-$(LIBTGT): build/Makefile
+$(LIBTGT): build/Makefile buildcexp
+
+.PHONY : buildcexp
+
+buildcexp:
 	export PATH=$(GNU_DIR)/bin:$$PATH; $(MAKE) -C build install
 
 ../O.Common/%.h: $(CEXP_SRCDIR)/%.h
