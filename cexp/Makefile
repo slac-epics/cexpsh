@@ -32,6 +32,8 @@ CEXP_CONFIG_ARGS+= --enable-ansiterm
 # let cexp fall into interactive mode after processing a script
 CEXP_CONFIG_ARGS+= --enable-interactive-default
 CEXP_CONFIG_ARGS+= --disable-loader
+# binutils (for disassembler) do not compile cleanly as of 2.21 :-(
+CEXP_CONFIG_ARGS+= --disable-werror
 CEXP_CONFIG_ARGS+=$(CONFIG_ARG_$(OS_CLASS))
 
 #==================================================
