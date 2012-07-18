@@ -17,6 +17,7 @@ CONFIGS += $(subst ../,,$(wildcard $(CONFIG_INSTALLS)))
 include $(TOP)/configure/RULES
 
 $(INSTALL_CFG)/CONFIG_CEXP:$(INSTALL_CFG) $(TOP)/configure/CONFIG_CEXP.in
+	$(RM) $@; \
 	if [ -e $(TOP)/cexp/$(CEXP_VERS)/binutils ] ; then \
 		sed -e 's/@OPCODES@/opcodes/' $(TOP)/configure/CONFIG_CEXP.in > $@ ; \
 	else \
