@@ -65,8 +65,16 @@ sources in a subdirectory of $(TOP)/cexp/<subdir> and define
 
 CEXP_VERS=<subdir>
 
-in $(TOP)/cexp/Makefile accordingly. If you are working
-with a CVS checkout then the CEXP package must be prepared:
+in $(TOP)/configure/CONFIG_SITE accordingly. CONFIG_SITE
+also defines
+
+CEXP_SRCDIR=$(TOP)/cexp/$(CEXP_VERS)
+
+which you may modify if you choose to install the CEXP
+sources elsewhere.
+
+If you are working with a CVS checkout of CEXP then the
+package must be prepared:
 
   chdir $(TOP)/cexp/<subdir>
   make prep
@@ -83,4 +91,5 @@ from the cexp top source directory to the binutils sources.
 ln -s <binutils-2.21-top>  cexp/$(CEXP_VERS)/binutils
 
 After installing the sources, chdir to $(TOP) and issue
-'make' as usual.
+'make' as usual (make clean is required if you had
+already built before installing binutils).
