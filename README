@@ -1,6 +1,8 @@
 This module allows an application to use cexpsh() instead
-of iocsh from 'main'. Currently relevant and supported on
-Linux only.
+of iocsh from 'main'. It also adds entry points to iocsh
+so that cexpsh may be called from iocsh.
+
+Currently relevant and supported on Linux only.
 
 To use this module:
 
@@ -36,26 +38,47 @@ To use this module:
      Some makefile magic provided by this module automatically
      defines HAVE_CEXP on platforms where cexpsh is available.
 
+     Note that it is not mandatory to start cexpsh from 'main'.
+     cexpsh can also be called from iocsh at run-time.
+
    - Your application's Makefile must link the cexp (and dependent)
      libraries. Again, the makefile magic defines CEXP_LIBS only
      when applicable:
 
          <myApp>_LIBS += $(CEXP_LIBS)
 
+     Your application's Makefile must also include this module's
+     'dbd' file:
+
+         <myApp>_DBD  += $(CEXP_DBDS)
+
 NOTES:
    1 No special symbol table is built - hence only symbols defined
-     by the main application (and shared libraries) are 'known'
-     to the shell.
-     Your application's Makefile may enforce linking symbols which
-     are not referenced by your app by adding
+     by the main application and/or shared libraries linked by the
+     main application are 'known' to the shell.
+     Your application's Makefile may enforce linking symbols from
+     non-shared libraries which are not referenced by your app by
+     adding
 
          -Wl,-u,<symbol>
 
      to the linker flags.
 
    2 cexp now supports reading symbols from shared libraries. All
-     global symbols exported by any shared libs used by the application
-     are available.
+     global symbols exported by any shared libs used by the
+     application are available.
+
+   3 This module registers cexpsh with iocsh so that it may be
+     called from the latter:
+
+         cexpsh()
+
+     Invokes cexpsh in interactive mode which may be terminated
+     by typing '<CTRL>-D'. You may also supply arguments in which
+     case cexpsh() returns to iocsh immediately after executing:
+
+         iocsh> cexpsh("-c",'printf("hello\n")')
+     
 
 BUILDING THIS MODULE
 ====================
