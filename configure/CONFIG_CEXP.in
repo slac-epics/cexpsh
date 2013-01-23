@@ -1,6 +1,8 @@
+CEXP_LIBS=cexpSup
 ifeq ($(OS_CLASS),Linux)
-CEXP_LIBS=cexp @OPCODES@ pmbfd pmelf tecla_r spencer_regexp
+CEXP_DEPLIBS+=cexp @OPCODES@ pmbfd pmelf tecla_r spencer_regexp
 CPPFLAGS+=-DHAVE_CEXP
-# Must link statically or build a symbol table somehow....
 BUILD_CEXP=YES
 endif
+CEXP_LIBS+=$(CEXP_DEPLIBS)
+CEXP_DBDS=cexpSup.dbd
