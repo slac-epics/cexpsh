@@ -1,0 +1,13 @@
+ - README: updated
+ - cexp/Makefile, configure/CONFIG_CEXP.in: list the libraries implemented or linked by cexp
+   in CEXP_DEPLIBS (was CEXP_LIBS). CEXP_DEPLIBS is architecture-
+   dependent (empty where there is no cexp). The support library
+   'libcexpSup' is always present (but may be empty) so that the
+   module can be used on any architecture w/o causing compiler or
+   linker errors. The application still adds $(CEXP_LIBS) from its
+   Makefile.
+ - cexp/Makefile, cexp/cexpSup.c, configure/CONFIG_CEXP.in,
+   demo/Makefile, cexp/cexpSup.dbd:
+   New: cexpsh module now features a dbd file. App must add $(CEXP_DBDS)
+   to its DBD. The dbd adds a registrar which adds entry points for
+   cexpsh to iocsh so that the former may be called from the latter.
