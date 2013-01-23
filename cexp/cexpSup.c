@@ -19,7 +19,7 @@ static void
 wrap_cexp_help_call(const iocshArgBuf *args)
 {
 	cexpsh("-h",0);
-	cexpsh("-ic","cexpsh.help()");
+	cexpsh("-ic","cexpsh.help()",0);
 }
 
 static void

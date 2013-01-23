@@ -61,7 +61,7 @@ $(LIBTGT): build/Makefile buildcexp
 .PHONY : buildcexp
 
 buildcexp:
-	export PATH=$(GNU_DIR)/bin:$$PATH; $(MAKE) -C build install
+	export PATH=$(GNU_DIR)/bin:$$PATH; $(MAKE) -C build AM_CFLAGS=-Wall install
 
 ../O.Common/%.h: $(CEXP_SRCDIR)/%.h
 	ln -s $^ $@
