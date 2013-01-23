@@ -12,7 +12,7 @@ PROD    = cexpDemo
 # <name>.dbd will be created from <name>Include.dbd
 DBD		= cexpDemo.dbd
 
-cexpDemo_DBD = base.dbd
+cexpDemo_DBD = base.dbd $(CEXP_DBDS)
 
 cexpDemo_SRCS         += cexpDemo_registerRecordDeviceDriver.cpp
 cexpDemo_SRCS_DEFAULT += cexpDemoMain.c
