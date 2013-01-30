@@ -11,6 +11,9 @@ include $(TOP)/configure/CONFIG
 PROD    = cexpDemo
 # <name>.dbd will be created from <name>Include.dbd
 DBD		= cexpDemo.dbd
+# Install demo script only if
+INSTALL_DEMO_SCRIPT_YES = cexpDemo.cmd
+SCRIPTS_IOC += $(INSTALL_DEMO_SCRIPT_$(BUILD_CEXP))
 
 cexpDemo_DBD = base.dbd $(CEXP_DBDS)
 
