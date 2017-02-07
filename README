@@ -83,36 +83,6 @@ NOTES:
 BUILDING THIS MODULE
 ====================
 
-In order to build this module you must install the CEXP
-sources in a subdirectory of $(TOP)/cexp/<subdir> and define
-
-CEXP_VERS=<subdir>
-
 in $(TOP)/configure/CONFIG_SITE accordingly. CONFIG_SITE
-also defines
+also defines CEXP_TOP
 
-CEXP_SRCDIR=$(TOP)/cexp/$(CEXP_VERS)
-
-which you may modify if you choose to install the CEXP
-sources elsewhere.
-
-If you are working with a CVS checkout of CEXP then the
-package must be prepared:
-
-  chdir $(TOP)/cexp/<subdir>
-  make prep
-
-This requires 'bison' and recent autotools.
-
-A released tarball of CEXP does not need this preparation 
-step.
-
-If you want disassembler support then you have to install
-binutils sources (vers. 2.21 works) and create a symlink
-from the cexp top source directory to the binutils sources.
-
-ln -s <binutils-2.21-top>  cexp/$(CEXP_VERS)/binutils
-
-After installing the sources, chdir to $(TOP) and issue
-'make' as usual (make clean is required if you had
-already built before installing binutils).

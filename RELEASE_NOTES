@@ -1,0 +1,5 @@
+R1.0.0  06-Feb-2017, H. Slepicka (slepicka)
+    New version of cexpsh.
+        Major changes on structure.
+        Code moved from cexp to src.
+        Now cexp is build outside of the package and referenced at CONFIG_SITE.

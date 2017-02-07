@@ -8,8 +8,6 @@ include $(TOP)/configure/CONFIG
 # the support applications defined in $(TOP)/configure/RELEASE
 CHECK_RELEASE = YES
 
-CFG=CONFIG_CEXP
-
 TARGETS = $(CONFIG_TARGETS)
 CONFIGS += $(subst ../,,$(wildcard $(CONFIG_INSTALLS)))
 

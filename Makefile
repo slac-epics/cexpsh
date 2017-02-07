@@ -2,7 +2,7 @@ TOP = .
 include $(TOP)/configure/CONFIG
 
 DIRS += configure
-DIRS += cexp
+DIRS += src
 DIRS += demo
 
 include $(TOP)/configure/RULES_TOP

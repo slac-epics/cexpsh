@@ -2,7 +2,7 @@ CEXP_LIBS=cexpSup
 ifeq ($(OS_CLASS),Linux)
 CEXP_DEPLIBS+=cexp @OPCODES@ pmbfd pmelf tecla_r spencer_regexp
 CPPFLAGS+=-DHAVE_CEXP
-BUILD_CEXP=YES
+CEXP=YES
 endif
 CEXP_LIBS+=$(CEXP_DEPLIBS)
 CEXP_DBDS=cexpSup.dbd

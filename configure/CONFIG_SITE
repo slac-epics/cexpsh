@@ -26,5 +26,5 @@
 
 # set this to the subdirectory (under cexp) where the
 # sources of cexp reside.
-CEXP_VERS=cexp-CEXP_Release_2_2
-CEXP_SRCDIR=$(TOP)/cexp/$(CEXP_VERS)
+#CEXP_VERS=cexp-CEXP_Release_2_2
+#CEXP_SRCDIR=$(TOP)/cexp/$(CEXP_VERS)
