@@ -14,7 +14,6 @@
 #endif
 
 #ifdef HAVE_CEXP
-
 static void
 wrap_cexp_help_call(const iocshArgBuf *args)
 {

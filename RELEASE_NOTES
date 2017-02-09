@@ -1,6 +1,7 @@
 R1.0.1  07-Feb-2017, H. Slepicka (slepicka)
     New version of cexpsh.
         This new version uses CExp 2.2.3
-        Major changes on structure.
-        Code moved from cexp to src.
+        Refactoring and cleanup on structure.
+        Library code moved from cexp to cexpSupApp.
+        Demo code moved from demo to cexpDemoApp.
         Now cexp is build outside of the package and referenced at CONFIG_SITE.

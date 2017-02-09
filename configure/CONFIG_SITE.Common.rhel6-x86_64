@@ -1,5 +1,3 @@
-CEXP_TOP := $(PSPKG_ROOT)/release/.../2.2.3/$(T_A)
+CEXP_TOP := $(PACKAGE_SITE_TOP)/cexp/$(CEXP_VERSION)/$(T_A)
 CEXP_INCLUDE := $(CEXP_TOP)/include
 CEXP_LIB := $(CEXP_TOP)/lib
-
-LIB_INSTALL += $(wildard $(CEXP_LIB)/lib*)
