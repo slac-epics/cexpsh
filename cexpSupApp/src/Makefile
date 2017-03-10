@@ -8,17 +8,17 @@ include $(TOP)/configure/CONFIG
 
 # EXTERNAL NON EPICS PACKAGES: USER INCLUDES AND LIBRARIES
 #=========================================================
-USR_INCLUDES += -I$(CEXP_INCLUDE)
+USR_INCLUDES += -I$(CEXP_PACK_INCLUDE)
 
 
 
 # PATH TO THE EXTERNAL LIBRARIES
 #===============================
-cexp_DIR += $(CEXP_LIB)
-pmbfd_DIR += $(CEXP_LIB)
-pmelf_DIR += $(CEXP_LIB)
-tecla_r_DIR += $(CEXP_LIB)
-spencer_regexp_DIR += $(CEXP_LIB)
+cexp_DIR += $(CEXP_PACK_LIB)
+pmbfd_DIR += $(CEXP_PACK_LIB)
+pmelf_DIR += $(CEXP_PACK_LIB)
+tecla_r_DIR += $(CEXP_PACK_LIB)
+spencer_regexp_DIR += $(CEXP_PACK_LIB)
 
 
 

@@ -1,0 +1,27 @@
+CEXP_PACK_VERSION=@VERS@
+
+CEXP_LIBS=cexpSup
+
+CEXP_COMPAT:=@COMPAT@
+
+ifneq ($(filter $(T_A),$(CEXP_COMPAT)),)
+    CEXP_PACK_TOP=$(PACKAGE_SITE_TOP)/cexp/$(CEXP_PACK_VERSION)/$(T_A)
+    CEXP_PACK_INCLUDE=$(CEXP_PACK_TOP)/include
+    CEXP_PACK_LIB=$(CEXP_PACK_TOP)/lib
+
+    CEXP_DEPLIBS+=cexp pmbfd pmelf tecla_r spencer_regexp
+
+    CPPFLAGS+=-DHAVE_CEXP
+    USR_INCLUDES+=-I$(CEXP_PACK_INCLUDE)
+
+    cexp_DIR += $(CEXP_PACK_LIB)
+    pmbfd_DIR += $(CEXP_PACK_LIB)
+    pmelf_DIR += $(CEXP_PACK_LIB)
+    tecla_r_DIR += $(CEXP_PACK_LIB)
+    spencer_regexp_DIR += $(CEXP_PACK_LIB)
+
+    USR_LIBS_LINUX += $(CEXP_DEPLIBS)
+endif
+
+CEXP_LIBS+=$(CEXP_DEPLIBS)
+CEXP_DBDS=cexpSup.dbd
