@@ -21,6 +21,8 @@ ifneq ($(filter $(T_A),$(CEXP_COMPAT)),)
     spencer_regexp_DIR += $(CEXP_PACK_LIB)
 
     USR_LIBS_LINUX += $(CEXP_DEPLIBS)
+
+	CEXP_SYS_LIBS  += ncurses pthread
 endif
 
 CEXP_LIBS+=$(CEXP_DEPLIBS)

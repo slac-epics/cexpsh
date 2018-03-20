@@ -1,3 +1,8 @@
+R1.1.0  20-Mar-2018, T. Straumann(strauman)
+    New version of cexpsh: 2.3.1
+
+    Define CEXP_SYS_LIBS for applications to add to
+    <App>_SYS_LIBS.
 R1.0.1  07-Feb-2017, H. Slepicka (slepicka)
     New version of cexpsh.
         This new version uses CExp 2.2.3
