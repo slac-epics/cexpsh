@@ -28,7 +28,6 @@ cexpDemo_SRCS_vxWorks  = -nil-
 cexpDemo_LIBS     += $(CEXP_LIBS)
 
 cexpDemo_LIBS     += $(EPICS_BASE_IOC_LIBS)
-cexpDemo_SYS_LIBS += $(CEXP_SYS_LIBS)
 
 
 # Install demo script only if

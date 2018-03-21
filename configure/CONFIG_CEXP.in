@@ -20,9 +20,9 @@ ifneq ($(filter $(T_A),$(CEXP_COMPAT)),)
     tecla_r_DIR += $(CEXP_PACK_LIB)
     spencer_regexp_DIR += $(CEXP_PACK_LIB)
 
-    USR_LIBS_LINUX += $(CEXP_DEPLIBS)
+    USR_LIBS_Linux += $(CEXP_DEPLIBS)
 
-	CEXP_SYS_LIBS  += ncurses pthread
+	USR_SYS_LIBS_Linux  += ncurses
 endif
 
 CEXP_LIBS+=$(CEXP_DEPLIBS)
