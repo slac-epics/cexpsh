@@ -18,6 +18,8 @@ PROD_IOC += cexpDemo
 # <name>.dbd will be created from <name>Include.dbd
 DBD	+= cexpDemo.dbd
 
+INCLUDES     += $(CEXP_INCLUDES)
+
 cexpDemo_DBD += base.dbd $(CEXP_DBDS)
 
 cexpDemo_SRCS         += cexpDemo_registerRecordDeviceDriver.cpp
@@ -26,6 +28,7 @@ cexpDemo_SRCS_RTEMS    = -nil-
 cexpDemo_SRCS_vxWorks  = -nil-
 
 cexpDemo_LIBS     += $(CEXP_LIBS)
+cexpDemo_SYS_LIBS += $(CEXP_SYS_LIBS)
 
 cexpDemo_LIBS     += $(EPICS_BASE_IOC_LIBS)
 

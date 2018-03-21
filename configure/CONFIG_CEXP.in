@@ -12,17 +12,14 @@ ifneq ($(filter $(T_A),$(CEXP_COMPAT)),)
     CEXP_DEPLIBS+=cexp pmbfd pmelf tecla_r spencer_regexp
 
     CPPFLAGS+=-DHAVE_CEXP
-    USR_INCLUDES+=-I$(CEXP_PACK_INCLUDE)
+    CEXP_INCLUDES=$(addprefix -I,$(CEXP_PACK_INCLUDE))
 
     cexp_DIR += $(CEXP_PACK_LIB)
     pmbfd_DIR += $(CEXP_PACK_LIB)
     pmelf_DIR += $(CEXP_PACK_LIB)
     tecla_r_DIR += $(CEXP_PACK_LIB)
     spencer_regexp_DIR += $(CEXP_PACK_LIB)
-
-    USR_LIBS_Linux += $(CEXP_DEPLIBS)
-
-	USR_SYS_LIBS_Linux  += ncurses
+	CEXP_SYS_LIBS   = ncurses
 endif
 
 CEXP_LIBS+=$(CEXP_DEPLIBS)

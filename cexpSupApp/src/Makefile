@@ -8,26 +8,7 @@ include $(TOP)/configure/CONFIG
 
 # EXTERNAL NON EPICS PACKAGES: USER INCLUDES AND LIBRARIES
 #=========================================================
-USR_INCLUDES += -I$(CEXP_PACK_INCLUDE)
-
-
-
-# PATH TO THE EXTERNAL LIBRARIES
-#===============================
-cexp_DIR += $(CEXP_PACK_LIB)
-pmbfd_DIR += $(CEXP_PACK_LIB)
-pmelf_DIR += $(CEXP_PACK_LIB)
-tecla_r_DIR += $(CEXP_PACK_LIB)
-spencer_regexp_DIR += $(CEXP_PACK_LIB)
-
-
-
-# LINK EXTERNAL LIBRARIES STATICALLY
-#===================================
-ifeq ($(HAS_CEXP), YES)
-    USR_LIBS_Linux += cexp pmbfd pmelf tecla_r spencer_regexp
-    USR_CPPFLAGS_Linux += -DHAVE_CEXP
-endif
+INCLUDES += $(CEXP_INCLUDES)
 
 
 
@@ -38,6 +19,13 @@ endif
 # for every target including the host computer.
 #==================================================
 LIBRARY+=cexpSup
+
+# LINK EXTERNAL LIBRARIES
+#===================================
+ifeq ($(HAS_CEXP), YES)
+    cexpSup_LIBS_Linux     += $(filter-out cexpSup,$(CEXP_LIBS))
+    cexpSup_SYS_LIBS_Linux += $(CEXP_SYS_LIBS)
+endif
 
 # cexpSup.dbd will be created and installed
 DBD+=cexpSup.dbd
