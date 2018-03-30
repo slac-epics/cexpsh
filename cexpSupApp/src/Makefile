@@ -8,8 +8,6 @@ include $(TOP)/configure/CONFIG
 
 # EXTERNAL NON EPICS PACKAGES: USER INCLUDES AND LIBRARIES
 #=========================================================
-INCLUDES += $(CEXP_INCLUDES)
-
 
 
 #==================================================
